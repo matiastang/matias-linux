@@ -6,12 +6,13 @@ echo "hello, world"
 if [ -d "$HOME/.bash_func" ]
 then
     echo "~/.bash_func目录存在"
-    if [[ $(ls $HOME/.bash_func | wc -c ) -gt 0 ]];then
-        for flist in $(ls $HOME/.bash_func) 
-        do
-            . $HOME/.bash_func/$flist
-        done
-    fi
+    # if [[ $(ls $HOME/.bash_func | wc -c ) -gt 0 ]];then
+    #     for flist in $(ls $HOME/.bash_func) 
+    #     do
+    #         . $HOME/.bash_func/$flist
+    #     done
+    # fi
 else
     echo "~/.bash_func目录不存在!"
 fi
+cd ...

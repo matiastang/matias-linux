@@ -1,6 +1,10 @@
 # Linux自定义命令
-
-
+```c
+# matias自定义脚本方法目录
+drwxr-xr-x   6 matias  staff   192B  1 21 13:35 .bash_func
+# matias自定义脚本
+drwxr-xr-x   4 matias  staff   128B  1 21 15:03 .matias_shell
+```
 ## 介绍
 
 自定指令的方法主要有三种：
@@ -41,6 +45,23 @@ fi
 
 当然，如果之前目录中没有bin目录，我们自己手动在$HOME目录下建立bin,这个时候需要我们注销后再登录才可以，或者执行source $HOME/.profile。
 
+1. 编写`.sh`
+```sh
+#!/bin/zsh -v
+###
+ # @Author: tangdaoyong
+ # @Date: 2021-01-21 14:58:38
+ # @LastEditors: tangdaoyong
+ # @LastEditTime: 2021-01-21 15:00:47
+ # @Description: file content
+### 
+# ~/.zshrc 添加 export PATH=$HOME/bin:/Users/matias/.matias_shell:$PATH
+echo "hello, start"
+```
+2. 添加到文件夹`/Users/matias/.matias_shell`
+3. `~/.zshrc` 添加`PATH`如：`export PATH=$HOME/bin:/Users/matias/.matias_shell:$PATH`
+4. 执行`source ~/.zshrc`
+5. 在当前`shell`环境下执行脚本`. mt_start.sh`或`source start.sh`
 ## alias方法
 
 我使用的`zsh`，自定义命令放在`~/.zshrc`

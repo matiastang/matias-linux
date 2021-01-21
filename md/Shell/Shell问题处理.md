@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-01-21 12:01:57
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-01-21 12:02:54
+ * @LastEditTime: 2021-01-21 14:44:04
  * @Description: 问题处理
 -->
 # 问题处理
@@ -20,5 +20,9 @@ cd $path
 解决方法:
 ```
 source cddir.sh
+. start.sh
 ```
 source命令是在当前shell环境下执行脚本，不会创建子shell;
+`. start.sh` 前的 `.` 不能忘记，代表的是在当前bash环境下读取并执行FileName中的命令，否则会新开子进程执行FileName中的命令，此时cd无法再当前bash环境跳转。 
+source、sh、bash、./执行脚本的区别：http://blog.csdn.net/yun90/article/details/22667829 
+（2）添加sh目录到环境变量目的是一方面可以在任何目录下执行FileName中命令，另外可以在该sh目录下添加多个此类脚本。
