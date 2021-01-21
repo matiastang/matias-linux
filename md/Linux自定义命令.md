@@ -8,7 +8,38 @@
 2. alias方法
 3. 建立fish shell一样的函数机制
 
+[linux中利用shell脚本条件执行linux命令](https://blog.csdn.net/qq_34810707/article/details/83116467)
+
 ## 环境变量法
+
+熟悉linux的都知道，大部分发行版都会判断用户目录下是否有bin目录，如果有就会将这个目录加入环境变量，也就是说，我们可以将一些脚本写好放到这个目录下，也就是$HOME/bin目录下，这样我们就可以在终端直接调用脚本了，上述判断bin目录是否存在的部分一般会放在$HOME/.profile,我的系统下这部分内容如下：
+
+```sh
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
+fi
+```
+
+当然，如果之前目录中没有bin目录，我们自己手动在$HOME目录下建立bin,这个时候需要我们注销后再登录才可以，或者执行source $HOME/.profile。
 
 ## alias方法
 
@@ -55,6 +86,13 @@ function t_func(){
 然后我们新打开一个终端，注意要新打开，或者你可以先把shell切换到sh，再切换到bash，使得.vimrc文件被加载，然后我们终端输入t_func可以看到效果！
 
 需要注意的是，要写成函数的形式，虽然一个文件中可以写多个函数，但是建立一个文件写一个函数，一个函数就是一条自定义指令，这样方便管理！
+
+## 总结比较
+| 方法 | 优点 | 缺点 |
+| - | - | - |
+| 环境变量法 | 管理方便，实现简单 | fork了子模块，注定有些你想要实现的实现起来可能比较复杂 |
+| alias法 | 简单，明了 | 如果要实现复杂的，将要写脚本，在赋别名，不好管理 |
+| 函数法 | 管理方便，实现简单，函数在终端启动时就加载完毕 | 过多的函数可能造成启动终端较慢，单应该没有明显的迟钝 |
 
 ## 错误
 
