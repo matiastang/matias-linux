@@ -2,7 +2,7 @@
  * @Author: tangdaoyong
  * @Date: 2021-01-21 09:39:53
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-01-25 11:12:14
+ * @LastEditTime: 2021-01-25 11:28:38
  * @Description: rm命令
 -->
 # rm命令
@@ -108,7 +108,7 @@ alias rm='myrm'
 [GitHub自定义`rm`回收站脚本文件](https://github.com/lagerspetz/linux-stuff)
 
 `linux-stuff/scripts/saferm.sh`适用于服务器和桌面两种环境。 如果脚本检测到 `GNOME` 、`KDE`、`Unity` 或 `LXDE` 桌面环境（`DE`），则它将文件或文件夹安全地移动到默认垃圾箱 `$HOME/.local/share/Trash/files`，否则会在您的主目录中创建垃圾箱文件夹 `$HOME/Trash`。
-
+`.sh`文件查看`mt_saferm.sh`文件
 `MacOS`使用处理
 修改`.sh`文件
 ```sh
@@ -127,5 +127,23 @@ trash_fallback="$HOME/.Trash"
 # usage: mv [-f | -i | -n] [-v] source target
 #        mv [-f | -i | -n] [-v] source ... directory
     mv -i "$1" "${trash}"
+```
+1. 编写`.bin`文件
+2. 将`.sh`移动到`bin`文件夹
+```
+sudo mv mt_saferm.sh /bin
+```
+`MacOS`的`bin`文件夹在`/usr/local/bin`
+```
+sudo mv mt_saferm.sh /usr/local/bin
+```
+3. 定义别名，可略
+```
+alias rm=saferm.sh
+```
+4. 执行下面的命令使其生效，
+```
+$ source ~/.bashrc
+$ source ~/.zshrc
 ```
 [参考](https://mp.weixin.qq.com/s/2oaX-ZRGkSC_9Cd1IYm1uQ)
