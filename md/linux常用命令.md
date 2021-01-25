@@ -2,13 +2,63 @@
  * @Author: tangdaoyong
  * @Date: 2021-01-20 17:08:24
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-01-21 11:26:50
+ * @LastEditTime: 2021-01-25 10:20:24
  * @Description: 常用命令
 -->
 # linux常用命令
 
 [Linux中常用操作命令](https://www.cnblogs.com/banjinbaijiu/p/9140460.html)
 
+## 查看当前用户
+```
+whoami
+lastlog
+```
+
+* 命令groups 查看当前用户bai所du属zhi组
+[root@localhost xly]# groups
+
+root
+
+* groups 用户（查看用户所属组）
+
+[root@localhost xly]# groups xly
+
+xly : xly
+
+* id 用户(查看用户所属组）
+
+[root@localhost xly]# id xly
+
+uid=500(xly) gid=500(xly) groups=500(xly)
+
+* 直接查看组文件，cat /etc/group
+
+[root@localhost xly]# cat /etc/group
+
+root:x:0:
+
+bin:x:1:bin,daemon
+
+daemon:x:2:bin,daemon
+
+sys:x:3:bin,adm
+
+adm:x:4:adm,daemon
+
+tty:x:5:
+
+disk:x:6:
+
+lp:x:7:daemon
+
+mem:x:8:
+
+kmem:x:9:
+
+xly:x:500:
+
+* 命令：cat /etc/group|grep 组名，用于查找某个用户组
 ## grep
 
 [linux grep命令详解](https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2856896.html)

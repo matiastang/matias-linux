@@ -2,10 +2,31 @@
  * @Author: tangdaoyong
  * @Date: 2021-01-21 09:39:53
  * @LastEditors: tangdaoyong
- * @LastEditTime: 2021-01-21 09:39:53
+ * @LastEditTime: 2021-01-25 11:12:14
  * @Description: rm命令
 -->
 # rm命令
+
+## 介绍
+
+Linux rm（英文全拼：remove）命令用于删除一个文件或者目录。
+> rm [options] name...
+
+-f, --force    忽略不存在的文件，从不给出提示。即使原档案属性设为唯读，亦直接删除，无需逐一确认。
+-i, --interactive 进行交互式删除，删除前逐一询问确认。
+-r, -R, --recursive   指示rm将参数中列出的全部目录和子目录均递归地删除。将目录及以下之档案亦逐一删除。
+-v, --verbose    详细显示进行的步骤
+    --help     显示此帮助信息并退出
+    --version  输出版本信息并退出
+
+### 删除文件可以直接使用rm命令
+> rm test.md
+### 删除目录则必须配合选项"-r"
+> rm -r test
+
+### 删除当前目录下的所有文件及目录
+> rm  -r  *
+
 
 rm常见命令参数
 rm: 可以备份，尽量不要删除，比删除更好的是重命名  -->只删除文件链接，重启、重新写入后回收
@@ -81,3 +102,30 @@ rm -rf /home/omc/last.txt
 myrm(){ D=/tmp/$(date +%Y%m%d%H%M%S); mkdir -p $D; mv "$@" $D && echo "moved to $D ok"; }
 alias rm='myrm'
 # $@: 这个程序的所有参数，作为一个i整体传递、
+
+## 自定义`rm`回收站
+
+[GitHub自定义`rm`回收站脚本文件](https://github.com/lagerspetz/linux-stuff)
+
+`linux-stuff/scripts/saferm.sh`适用于服务器和桌面两种环境。 如果脚本检测到 `GNOME` 、`KDE`、`Unity` 或 `LXDE` 桌面环境（`DE`），则它将文件或文件夹安全地移动到默认垃圾箱 `$HOME/.local/share/Trash/files`，否则会在您的主目录中创建垃圾箱文件夹 `$HOME/Trash`。
+
+`MacOS`使用处理
+修改`.sh`文件
+```sh
+# trash_desktops="$HOME/.local/share/Trash/files"
+trash_desktops="$HOME/.Trash"
+# if neither is running:
+# trash_fallback="$HOME/Trash"
+trash_fallback="$HOME/.Trash"
+```
+修改删除指令
+`MacOS`删除夹的位置在用户目录下：`/Users/matias/.Trash/`即`$HOME/.Trash`。
+```sh
+# mv -b -- "$1" "${trash}" # moves and backs up old files
+# MacOS
+# mv: illegal option -- b
+# usage: mv [-f | -i | -n] [-v] source target
+#        mv [-f | -i | -n] [-v] source ... directory
+    mv -i "$1" "${trash}"
+```
+[参考](https://mp.weixin.qq.com/s/2oaX-ZRGkSC_9Cd1IYm1uQ)

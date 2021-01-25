@@ -11,6 +11,7 @@ drwxr-xr-x   4 matias  staff   128B  1 21 15:03 .matias_shell
 1. 环境变量法
 2. alias方法
 3. 建立fish shell一样的函数机制
+4. 将`.sh`移动到`bin`文件夹
 
 [linux中利用shell脚本条件执行linux命令](https://blog.csdn.net/qq_34810707/article/details/83116467)
 
@@ -115,6 +116,27 @@ function t_func(){
 | alias法 | 简单，明了 | 如果要实现复杂的，将要写脚本，在赋别名，不好管理 |
 | 函数法 | 管理方便，实现简单，函数在终端启动时就加载完毕 | 过多的函数可能造成启动终端较慢，单应该没有明显的迟钝 |
 
+## 将`.sh`移动到`bin`文件夹
+
+1. 编写`.bin`文件
+2. 将`.sh`移动到`bin`文件夹
+```
+sudo mv mt_saferm.sh /bin
+```
+`MacOS`的`bin`文件夹在`/usr/local/bin`
+```
+sudo mv mt_saferm.sh /usr/local/bin
+```
+3. 定义别名，可略
+```
+alias rm=saferm.sh
+```
+4. 执行下面的命令使其生效，
+```
+$ source ~/.bashrc
+$ source ~/.zshrc
+```
+5. 可以测试了。
 ## 错误
 
 * assignment
