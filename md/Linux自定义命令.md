@@ -12,6 +12,7 @@ drwxr-xr-x   4 matias  staff   128B  1 21 15:03 .matias_shell
 2. alias方法
 3. 建立fish shell一样的函数机制
 4. 将`.sh`移动到`bin`文件夹
+5. 建立软链接
 
 [linux中利用shell脚本条件执行linux命令](https://blog.csdn.net/qq_34810707/article/details/83116467)
 
@@ -142,3 +143,12 @@ $ source ~/.zshrc
 * assignment
 
 `=`两边不能有空格
+
+## 5. 建了软连接
+
+```sh
+$ sudo ln -s $HOME/matias/MT/MTGithub/tool/frpc/frpc.sh /usr/local/bin/frpc
+$ which frpc
+/usr/local/bin/frpc
+```
+`bin`下面的文件链接到可以执行的脚步，这样就相当于把脚步放到`bin`目录下了，就能执行了。
